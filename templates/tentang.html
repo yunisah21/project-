@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Tentang - Mindera{% endblock %}
+
+{% block content %}
+<div class="tentang-page">
+    <section class="section bg-light-blue">
+        <h2 class="section-title">Apa Guna <span>Kami?</span></h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-hands-helping fa-3x"></i>
+                </div>
+                <h3>Fasilitasi</h3>
+                <p>Kami menyediakan tes minat dan bakat yang mudah, cepat, dan siap membantu kamu untuk mengenali potensi diri sejak dini.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-book-open fa-3x"></i>
+                </div>
+                <h3>Edukasi</h3>
+                <p>Setelah kamu menyelesaikan tes, kami akan memberikan hasil analisis serta rekomendasi terbaik untuk passion dan potensi kamu sesuai bidang yang tepat.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-lightbulb fa-3x"></i>
+                </div>
+                <h3>Rekomendasi</h3>
+                <p>Menyajikan hasil analisis serta rekomendasi terbaik untuk masa depanmu.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section workflow">
+        <h2 class="section-title">Cara Kerja <span>Kami</span></h2>
+        <div class="workflow-grid">
+            <div class="work-item">
+                <div class="work-icon">
+                    <i class="fas fa-clipboard-list fa-2x"></i>
+                </div>
+                <h4>Pilih Test</h4>
+                <p>Pilih jenis test yang ingin kamu coba</p>
+            </div>
+            <div class="work-item">
+                <div class="work-icon">
+                    <i class="fas fa-pencil-alt fa-2x"></i>
+                </div>
+                <h4>Jawab Test</h4>
+                <p>Jawablah Pertanyaan dari Jenis Test Yang Kamu Pilih</p>
+            </div>
+            <div class="work-item">
+                <div class="work-icon">
+                    <i class="fas fa-chart-line fa-2x"></i>
+                </div>
+                <h4>Analisis Test</h4>
+                <p>Kami akan menganalisis hasil jawaban kamu</p>
+            </div>
+            <div class="work-item">
+                <div class="work-icon">
+                    <i class="fas fa-award fa-2x"></i>
+                </div>
+                <h4>Hasil Test</h4>
+                <p>Kami akan memberikan rekomendasi terbaik</p>
+            </div>
+        </div>
+    </section>
+
+ <section class="section bg-light-blue" id="test-section">
+    <h2 class="section-title">Yuk Coba Mulai Tesnya</h2>
+    <div class="test-menu-grid">
+        <div class="test-card">
+            <div class="icon-container">
+                <img src="{{ url_for('static', filename='images/minat.png') }}" alt="Icon Tes Minat" class="test-icon" onerror="this.parentElement.innerHTML='<i class=\'fas fa-compass fa-4x\' style=\'color: #3b71ca;\'></i>'">
+            </div>
+            <h3>Tes Minat</h3>
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('tes_minat') }}" class="btn-primary">Mulai Sekarang</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-primary">Login untuk Mulai</a>
+            {% endif %}
+        </div>
+
+        <div class="test-card">
+            <div class="icon-container">
+                <img src="{{ url_for('static', filename='images/bakat.png') }}" alt="Icon Tes Bakat" class="test-icon" onerror="this.parentElement.innerHTML='<i class=\'fas fa-star fa-4x\' style=\'color: #3b71ca;\'></i>'">
+            </div>
+            <h3>Tes Bakat</h3>
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('tes_bakat') }}" class="btn-primary">Mulai Sekarang</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-primary">Login untuk Mulai</a>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="tagline-bottom">
+        <p><span class="hashtag">#AyoWujudkan</span> dunia kerja yang relevan dan sesuai dengan kemampuanmu, demi membangun masa depan yang lebih cerah</p>
+    </div>
+</section>
+{% endblock %}

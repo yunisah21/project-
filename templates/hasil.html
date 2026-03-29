@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Hasil Tes - Mindera{% endblock %}
+
+{% block content %}
+<div class="hasil-page bg-light-blue">
+    <div class="hasil-container">
+        <div class="hasil-card">
+            <div class="hasil-header">
+                <div class="profile-icon">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h2>Hai, <span class="nama-user">{{ nama }}</span></h2>
+                <div class="hasil-badge">
+                    {% if jenis == 'minat' %}
+                        <i class="fas fa-compass"></i> Hasil Tes Minat
+                    {% else %}
+                        <i class="fas fa-star"></i> Hasil Tes Bakat
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="hasil-body">
+                <h3 class="hasil-title">{{ judul }}</h3>
+                <div class="hasil-content">
+                    <p class="hasil-description">{{ deskripsi }}</p>
+                </div>
+            </div>
+
+            <div class="hasil-footer">
+                <a href="{{ url_for('index') }}" class="btn-secondary">
+                    <i class="fas fa-home"></i> Kembali ke Beranda
+                </a>
+                <a href="#" class="btn-download" onclick="window.print(); return false;">
+                    <i class="fas fa-download"></i> Download Hasil
+                </a>
+            </div>
+        </div>
+
+        <div class="hasil-actions">
+            <div class="action-card">
+                <i class="fas fa-redo-alt"></i>
+                <h4>Ulangi Tes</h4>
+                <p>Ingin mencoba lagi?</p>
+                <a href="{{ url_for('tes_minat') if jenis == 'minat' else url_for('tes_bakat') }}" class="btn-action">
+                    Ulangi Tes
+                </a>
+            </div>
+            <div class="action-card">
+                <i class="fas fa-clipboard-list"></i>
+                <h4>Coba Tes Lain</h4>
+                <p>Eksplorasi lebih lanjut</p>
+                <a href="{{ url_for('tes_bakat') if jenis == 'minat' else url_for('tes_minat') }}" class="btn-action">
+                    {{ 'Tes Bakat' if jenis == 'minat' else 'Tes Minat' }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+@media print {
+    header, footer, .btn-download, .btn-secondary, .hasil-actions, .hasil-footer { 
+        display: none !important; 
+    }
+    .hasil-card { 
+        box-shadow: none !important; 
+        border: 2px solid #ddd; 
+        margin: 0; 
+        page-break-inside: avoid;
+    }
+    body { 
+        background: white !important; 
+    }
+    .hasil-page {
+        background: white !important;
+        padding: 20px !important;
+    }
+}
+</style>
+{% endblock %}

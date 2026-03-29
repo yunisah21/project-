@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Tes Minat - Mindera{% endblock %}
+
+{% block content %}
+<div class="tes-page">
+    <div class="tes-header">
+        <h1>Tes Minat </h1>
+        <p>Jawab semua pertanyaan dengan jujur sesuai preferensi kamu</p>
+    </div>
+
+    <div class="tes-container bg-light-blue">
+        <div class="progress-wrapper">
+            <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+        </div>
+
+        <form action="{{ url_for('submit_minat') }}" method="POST" id="tesMinatForm">
+            {% for p in pertanyaan %}
+            <div class="tes-card-full" data-question="{{ p.nomor }}">
+                <div class="question-number">Pertanyaan {{ p.nomor }} / 15</div>
+                <h3>{{ p.pertanyaan }}</h3>
+                <div class="option-row">
+                    <button type="button" class="btn-option blue" data-value="{{ p.kategori_a }}" data-name="minat_{{ p.nomor }}">
+                        {{ p.pilihan_a }}
+                    </button>
+                    <button type="button" class="btn-option light-blue" data-value="{{ p.kategori_b }}" data-name="minat_{{ p.nomor }}">
+                        {{ p.pilihan_b }}
+                    </button>
+                </div>
+                <input type="hidden" name="minat_{{ p.nomor }}" id="input_{{ p.nomor }}" required>
+            </div>
+            {% endfor %}
+
+            <div class="text-center">
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-check-circle"></i> Submit Jawaban
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

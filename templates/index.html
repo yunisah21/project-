@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Mindera - Home{% endblock %}
+
+{% block content %}
+<div class="landing-page">
+    
+    {% if session.get('user_id') %}
+    <section class="hero-logged-in">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="content">
+            <h1>Selamat Datang, <span>{{ session['username'] }}</span>!</h1>
+            <p>Siap untuk melanjutkan penjelajahan minat dan bakatmu hari ini? Pilih tes di bawah untuk memulai.</p>
+        </div>
+    </section>
+
+    <section class="section how-about">
+        <div class="container-flex">
+            <div class="text-content">
+                <h2>How About <span>Mindera</span></h2>
+                <p><strong>Mindera</strong> media platform digital yang siap membantu kamu dalam menemukan potensi terpendam yang tidak kamu tau!</p>
+                <p class="tagline-blue">#AyoWujudkan dunia kerja yang relevan dan sesuai dengan kemampuanmu.</p>
+            </div>
+            <div class="image-content">
+                <img src="{{ url_for('static', filename='images/run.jpeg') }}" alt="Illustration" onerror="this.style.display='none'">
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light-blue">
+        <h2 class="section-title">Apa Guna <span>Kami?</span></h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Fasilitasi</h3>
+                <p>Kami menyediakan tes minat dan bakat yang mudah, cepat, dan siap membantu kamu.</p>
+            </div>
+            <div class="card">
+                <h3>Edukasi</h3>
+                <p>Informasi singkat terkait pengetahuan umum tentang hal yang ingin kamu tau.</p>
+            </div>
+            <div class="card">
+                <h3>Rekomendasi</h3>
+                <p>Menyajikan hasil analisis serta rekomendasi terbaik untuk masa depanmu.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section workflow">
+        <h2 class="section-title">Cara Kerja <span>Kami</span></h2>
+        <div class="workflow-grid">
+            <div class="work-item">
+                <div class="icon-wrap">1</div>
+                <h4>Pilih Test</h4>
+                <p>Pilih jenis test yang ingin kamu coba</p>
+            </div>
+            <div class="work-item">
+                <div class="icon-wrap">2</div>
+                <h4>Jawab Test</h4>
+                <p>Jawablah Pertanyaan dari Jenis Test Yang Kamu Pilih</p>
+            </div>
+            <div class="work-item">
+                <div class="icon-wrap">3</div>
+                <h4>Analisis Test</h4>
+                <p>Kami akan menganalisis hasil jawaban kamu</p>
+            </div>
+            <div class="work-item">
+                <div class="icon-wrap">4</div>
+                <h4>Hasil Test</h4>
+                <p>Kami akan memberikan rekomendasi terbaik</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light-blue" id="test-section">
+        <h2 class="section-title">Ayo Kita Lihat</h2>
+        <div class="test-menu-grid">
+            <div class="test-card">
+                <div class="icon-container">
+                    <img src="{{ url_for('static', filename='img/icon_minat.png') }}" alt="Icon Tes Minat" class="test-icon" onerror="this.parentElement.innerHTML='<i class=\'fas fa-compass fa-4x\' style=\'color: #3b71ca;\'></i>'">
+                </div>
+                <h3>Tes Minat</h3>
+                <p class="test-desc">Temukan bidang pekerjaan yang sesuai dengan minatmu</p>
+                <a href="{{ url_for('tes_minat') }}" class="btn-primary">Mulai Sekarang</a>
+            </div>
+
+            <div class="test-card">
+                <div class="icon-container">
+                    <img src="{{ url_for('static', filename='img/icon_bakat.png') }}" alt="Icon Tes Bakat" class="test-icon" onerror="this.parentElement.innerHTML='<i class=\'fas fa-star fa-4x\' style=\'color: #ffc107;\'></i>'">
+                </div>
+                <h3>Tes Bakat</h3>
+                <p class="test-desc">Ukur kecerdasan majemukmu dalam berbagai bidang</p>
+                <a href="{{ url_for('tes_bakat') }}" class="btn-primary">Mulai Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    {% else %}
+    <!-- ========== TAMPILAN SEBELUM LOGIN ========== -->
+    <section class="hero">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="content">
+            <h1>Berkarirlah bersama <span>Mindera</span></h1>
+            <p>Temukan minat, bakat, dan potensi dalam dirimu melalui platform digital yang membantumu menentukan arah masa depan dengan lebih percaya diri.</p>
+            <div class="buttons">
+                <a href="{{ url_for('register') }}" class="btn-daftar">Daftar</a>
+                <a href="{{ url_for('login') }}" class="btn-login">Login</a>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+</div>
+{% endblock %}
